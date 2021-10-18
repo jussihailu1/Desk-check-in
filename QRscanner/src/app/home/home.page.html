@@ -1,0 +1,106 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-title>
+      Offizzer
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <!-- <ion-item>
+    <ion-label name="email"><strong>Desk number</strong></ion-label>
+    <ion-input name="email" type="text" slot="end" [(ngModel)]="deskId"></ion-input>
+  </ion-item>
+
+  <ion-list>
+    <ion-radio-group [(ngModel)]="email">
+      <ion-list-header>
+        <ion-label>Email</ion-label>
+      </ion-list-header>
+
+      <ion-item>
+        <ion-label>test@offizzer.com</ion-label>
+        <ion-radio slot="start" value="test@offizzer.com"></ion-radio>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>test2@offizzer.com</ion-label>
+        <ion-radio slot="start" value="test2@offizzer.com"></ion-radio>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>test3@offizzer.com</ion-label>
+        <ion-radio slot="start" value="test3@offizzer.com"></ion-radio>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>test4@offizzer.com</ion-label>
+        <ion-radio slot="start" value="test4@offizzer.com"></ion-radio>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>test5@offizzer.com</ion-label>
+        <ion-radio slot="start" value="test5@offizzer.com"></ion-radio>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>test6@offizzer.com</ion-label>
+        <ion-radio slot="start" value="test6@offizzer.com"></ion-radio>
+      </ion-item>
+    </ion-radio-group>
+  </ion-list>
+
+  <br> -->
+
+  <div id="container">
+
+    <ion-card *ngIf="ERROR" color="danger">
+      <ion-card-header>
+        <ion-card-subtitle>Error</ion-card-subtitle>
+        <ion-icon style="font-size: 10em;" name="close"></ion-icon>
+      </ion-card-header>
+      <ion-card-content>
+        {{ERROR}}
+      </ion-card-content>
+      <ion-ripple-effect></ion-ripple-effect>
+    </ion-card>
+
+    <ion-card *ngIf="checkedIn" color="success">
+      <ion-card-header>
+        <ion-icon style="font-size: 10em;" name="checkmark"></ion-icon>
+      </ion-card-header>
+      <ion-card-content>
+        You are checked in at desk number {{deskId}}
+      </ion-card-content>
+      <ion-ripple-effect></ion-ripple-effect>
+    </ion-card>
+
+    <ion-card *ngIf="!ERROR && !checkedIn" color="primary" (click)="mobileScan()">
+      <ion-card-header>
+        <ion-icon style="font-size: 8em;" name="qr-code"></ion-icon>
+      </ion-card-header>
+      <ion-card-content>
+        Scan QR code
+      </ion-card-content>
+      <ion-ripple-effect></ion-ripple-effect>
+    </ion-card>
+
+    <p style="margin-bottom: 50%;">Email address: {{email}}</p>
+
+    <ion-button (click)="CheckOut()" *ngIf="checkedIn">
+      <ion-icon name="log-out"></ion-icon>
+      Check out
+    </ion-button>
+
+    <ion-button (click)="loadCheckInStatus()" *ngIf="platformIsWeb">
+      <ion-icon name="reload"></ion-icon>
+      Refresh
+    </ion-button>
+
+    <ion-button (click)="CheckIn()" *ngIf="platformIsWeb && !checkedIn">
+      <ion-icon name="log-in"></ion-icon>
+      Check In
+    </ion-button>
+  </div>
+
+</ion-content>
